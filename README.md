@@ -505,37 +505,6 @@ async function allocateReward(userAddress: string, amount: bigint) {
        → Tokens distributed from x2EarnRewardsPool
    ```
 
-### Environment Variables
-
-```env
-CYCLE2EARN_CONTRACT_ADDRESS=0x9B9CA9D0C41Add1d204f90BA0E9a6844f1843A84
-X2EARN_POOL_ADDRESS=0x...
-VBD_APP_ID=0x...
-VERIFIER_PRIVATE_KEY=0x...
-STRAVA_CLIENT_ID=...
-STRAVA_CLIENT_SECRET=...
-```
-
-### API Integration Example
-
-```typescript
-// Strava webhook handler
-app.post('/strava/webhook', async (req, res) => {
-  const activity = req.body;
-  
-  // Get user's wallet address from Strava ID
-  const walletAddress = await getWalletFromStravaId(activity.athlete_id);
-  
-  // Calculate reward based on activity
-  const reward = calculateReward(activity);
-  
-  // Allocate reward (as verifier)
-  await cycle2earnContract.addRewardAlt(walletAddress, reward);
-  
-  res.status(200).send('OK');
-});
-```
-
 ## Dependencies
 
 - **OpenZeppelin Contracts v5.x**
@@ -548,11 +517,4 @@ app.post('/strava/webhook', async (req, res) => {
 
 This contract is UNLICENSED. Ensure proper licensing before production use.
 
----
-
-**Last Updated:** October 8, 2025
-
-**Contract Version:** 1.0.0
-
-**Maintainer:** VeChain Hackathon Team
 
